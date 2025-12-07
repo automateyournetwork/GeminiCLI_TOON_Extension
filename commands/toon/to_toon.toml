@@ -1,4 +1,3 @@
-name = "/toon:json"
 description = "Convert a structured JSON object to TOON format with token savings using the TOON.to_toon tool."
 
 # ---- Prompt wiring for Gemini CLI ----

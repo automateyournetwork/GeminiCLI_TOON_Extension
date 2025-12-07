@@ -1,4 +1,3 @@
-name = "/toon:string"
 description = "Convert a raw JSON string to TOON format with token savings using the TOON.to_toon_from_string tool."
 
 prompt = """
