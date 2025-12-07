@@ -87,7 +87,40 @@ def toon_with_stats(data: Any) -> str:
             src = f_json.name
             dst = f_json.name + ".toon"
 
-        cmd = ["toon-format", src, "-o", dst]
+        # Try native toon-format first
+        try_cmds = [
+            ["toon-format", src, "-o", dst],
+            ["npx", "@toon-format/cli", src, "-o", dst],
+        ]
+
+        last_err = None
+        for cmd in try_cmds:
+            logger.info(f"[TOON] Trying: {' '.join(cmd)}")
+            try:
+                result = subprocess.run(cmd, capture_output=True, text=True)
+            except FileNotFoundError as e:
+                # Executable not found (toon-format or npx)
+                logger.warning(f"[TOON] Command not found: {cmd[0]} ({e})")
+                last_err = str(e)
+                continue
+
+            if result.returncode == 0:
+                break  # success
+            else:
+                logger.error(f"[TOON] CLI failed: {result.stderr}")
+                last_err = result.stderr
+
+        else:
+            # We never broke out of the loop: all attempts failed
+            return (
+                "```error\n"
+                "TOON CLI failed (all strategies):\n"
+                f"{last_err}\n\n"
+                "JSON OUTPUT:\n"
+                f"{json_str}\n"
+                "```"
+            )
+
         logger.info(f"[TOON] Running: {' '.join(cmd)}")
 
         result = subprocess.run(cmd, capture_output=True, text=True)
