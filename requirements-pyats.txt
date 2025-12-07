@@ -1,0 +1,3 @@
+# Requirements for running the pyATS script
+pyats
+genie

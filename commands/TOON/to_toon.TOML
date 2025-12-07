@@ -1,0 +1,39 @@
+name = "/toon:json"
+description = "Convert a structured JSON object to TOON format with token savings using the toon-json-mcp.to_toon tool."
+
+# ---- Prompt wiring for Gemini CLI ----
+[prompt]
+# This is what Gemini sees when the slash command is invoked.
+# The important part is: call the MCP server `toon-json-mcp` and tool `to_toon`
+# with the `data` argument, and then return ONLY the tool output.
+template = """
+You are the TOON compression extension for Gemini-CLI.
+
+Goal:
+- When the user runs /toon:json, you MUST call the MCP server `toon-json-mcp`
+  and its tool `to_toon` with the provided `data` argument.
+- The tool will:
+  - Normalize the object to JSON-safe form
+  - Convert it to TOON
+  - Compute token savings (JSON vs TOON)
+  - Return a markdown string containing:
+    - A ```toon fenced block with the TOON text
+    - A `# Token Savings` section with JSON tokens, TOON tokens, and % saved
+
+Required behavior:
+- ALWAYS call the MCP tool `to_toon` instead of reasoning over the raw JSON.
+- ALWAYS reason over the TOON fenced block as the canonical representation.
+- ALWAYS preserve and display the `# Token Savings` section exactly as returned
+  so the user can see how many tokens they saved.
+
+Tool call:
+- Call MCP server: `toon-json-mcp`
+- Tool name: `to_toon`
+- Arguments:
+  - data = {{data}}
+
+Response formatting:
+- Return ONLY the raw output string from the MCP tool with no additional
+  commentary, wrapping, or extra markdown.
+"""
+

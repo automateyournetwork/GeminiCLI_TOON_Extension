@@ -1,0 +1,13 @@
+{
+  "name": "TOON",
+  "version": "1.0.0",
+  "description": "Convert any JSON being sent to the LLM into TOON format and display token savings",
+  "mcpServers": {
+    "TOON": {
+      "command": "bash",
+      "args": ["${extensionPath}${/}servers${/}run.sh"]
+    }
+  },
+  "contextFileName": "GEMINI.md",
+  "excludeTools": []
+}
