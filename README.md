@@ -44,12 +44,14 @@ This saves users massive context window space, reduces cost, and greatly improve
 You can also invoke it manually with slash commands.
 
 ⚙️ Install
+
 gemini extensions install https://github.com/automateyournetwork/GeminiCLI_TOON_Extension.git
 
 
 No additional manual setup is required—after installation, the TOON MCP server runs behind the scenes and all slash commands become available.
 
 🚀 Core Features
+
 ✔ Automatic JSON Interception
 
 If Gemini sees any JSON anywhere in the conversation, it will:
@@ -69,7 +71,9 @@ This is zero-effort optimization.
 Use these when you want explicit control:
 
 Command	What it Does
+
 /toon:json	Convert a structured JSON object (dict/list/etc.) into TOON
+
 /toon:string	Convert a raw JSON string into TOON
 
 Both return:
@@ -83,8 +87,11 @@ A Token Savings section showing JSON tokens, TOON tokens, and % saved
 Every TOON conversion includes:
 
 # Token Savings
+
 - JSON tokens: <N>
+
 - TOON tokens: <M>
+
 - Saved: <X%>
 
 
@@ -111,9 +118,11 @@ Guarantee consistent formatting
 Are automatically used when Gemini detects JSON in a conversation
 
 💡 Example Workflows
+
 Natural Language
 
 “Here’s some JSON — what does it mean?”
+
 Gemini automatically detects the JSON → calls TOON → reasons using TOON.
 
 Slash Commands
@@ -121,6 +130,7 @@ Slash Commands
 Explicit user control:
 
 /toon:json data=<parsed object>
+
 /toon:string json_text="{\"interfaces\": [...]}"
 
 Pipeline Usage
@@ -168,9 +178,11 @@ JSON contents are not modified beyond formatting
 👤 Author
 
 John Capobianco
+
 Head of Developer Relations — Selector AI
 
 Creator of the Gemini-CLI multimodal ecosystem:
+
 /talk, /listen, /vision, /computeruse, /packet_buddy, /subnetcalculator, /file_search, now /toon
 
 "The CLI is dead — long live the multimodal CLI."
