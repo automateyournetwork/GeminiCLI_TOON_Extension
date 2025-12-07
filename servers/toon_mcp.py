@@ -6,7 +6,7 @@ import tempfile
 from typing import Any
 
 import tiktoken
-from fastmcp import FastMCP, tool
+from fastmcp import FastMCP
 
 # ================================================================
 # LOGGING
